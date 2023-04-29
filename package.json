@@ -1,0 +1,22 @@
+{
+  "name": "04-29-2023-employee-database",
+  "version": "1.0.0",
+  "description": "## Your Task",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dann-lam/04-29-2023-employee-database.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dann-lam/04-29-2023-employee-database/issues"
+  },
+  "homepage": "https://github.com/dann-lam/04-29-2023-employee-database#readme",
+  "dependencies": {
+    "mysql2": "^3.2.4"
+  }
+}
