@@ -1,10 +1,6 @@
 // GIVEN a command-line application that accepts user input
-const express = require('express');
 const inquirer = require('inquirer');
-const mysql = require('mysql2');
-const queryHandler = require("./queryhandler")
-
-const app = express();
+const { queryHandler } = require("./queryhandler")
 
 let questions = [
     {
@@ -35,21 +31,6 @@ const CLI = () => {
 
 }
 
-
-
-
-
-// const CLI = () => {
-//     inquirer.prompt(questions).then((output) => {
-//         console.log(output.mainMenu);
-//     })
-//     .catch((error)=> {
-//         if (error) {
-//             console.log(error)
-//             throw new Error ("Ohhh nooo");
-//         }
-//     })
-// };
 
 module.exports = {
 CLI,
