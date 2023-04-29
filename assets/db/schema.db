@@ -19,10 +19,10 @@ CREATE TABLE department(
 
 CREATE TABLE role(
     id INT AUTO_INCREMENT,
-    PRIMARY KEY (id),
     title VARCHAR(30),
     salary DECIMAL,
     department_id INT,
+    PRIMARY KEY (id),
     FOREIGN KEY (department_id)
     REFERENCES department(id)
     ON DELETE SET NULL
@@ -38,20 +38,3 @@ CREATE TABLE employee(
     REFERENCES role(id)
     ON DELETE SET NULL
 );
-
-
-INSERT INTO department (name)
-VALUES  ("Front"),
-        ("Back"),
-
-INSERT INTO role (title, salary, department_id)
-VALUES  ("Cashier", 40000, 1),
-        ("Stocker", 40000, 2),
-        ("Greeter", 35000, 1),
-        ("Logistics", 60000, 2),
-        ("Manager", 70000, 2),
-        ("Wrangler", 40000, 1),
-        ("CEO", 900000, 2),
-
-INSERT INTO employee (first_name, last_name, role_id, manager_id)
-VALUES ()

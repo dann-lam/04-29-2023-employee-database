@@ -1,0 +1,17 @@
+INSERT INTO department (name)
+VALUES  ("Front"),
+        ("Back"),
+
+INSERT INTO role (title, salary, department_id)
+VALUES  ("CEO", 900000, 2),
+        ("Manager", 70000, 2),
+        ("Logistics", 60000, 2),
+
+
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
+VALUES  ("Master", "Chief", 1, null),
+        ("John", "John", 2, 1),
+        ("Kevin", "Kevin", 2, 1),
+        ("Kanye", "West", 3, 2),
+        ("Roe", "Jogan", 3, 3),
+        ("Fex", "Liedman", 3, 2);
