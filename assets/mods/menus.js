@@ -2,6 +2,10 @@
 const inquirer = require('inquirer');
 const { queryHandler } = require("./queryhandler")
 
+
+
+    //An array of questions, easier to handle it this way instead of shoving it straight into the prompt.
+
 let questions = [
     {
         type: "list",
@@ -15,23 +19,30 @@ let questions = [
                 'Add a Department',
                 'Add a Role',
                 'Add An Employee',
-                'Update an Employee'
+                'Update an Employee',
+                'Exit'
             ]
     },
-]
-const CLI = () => {
+];
 
+// GIVEN a command-line application that accepts user input
+const CLI = () => {
+    // THEN I am presented with the following options: view all departments, view all roles, view all employees, add a department, add a role, add an employee, and update an employee role
     return inquirer.prompt(questions)
     .then(answers => {
+        //queryHandler is being imported, our answer is saved in answers.mainMenu
         queryHandler(answers.mainMenu);
+    })
+    .then(() => {
+        return CLI();
     })
     .catch(error => {
         console.log(error);
-    });
+    })
 
 }
 
-
+//Export this so we can use it on the
 module.exports = {
 CLI,
 };

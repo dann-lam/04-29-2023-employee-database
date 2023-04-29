@@ -1,6 +1,16 @@
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
 
+const db = mysql.createConnection(
+    {
+      host: 'localhost',
+      user: 'root',
+      password: 'password',
+      database: 'employee_db'
+    },
+    console.log(`Connected to the movie_db database.`)
+);
+
 // THEN I am prompted to select an employee to update and their new role and this information is updated in the database
 const updateEmployeeRole = () => {
 
@@ -22,57 +32,75 @@ const addDepartment = () => {
 }
 
 // THEN I am presented with a formatted table showing employee data, including employee ids, first names, last names, job titles, departments, salaries, and managers that the employees report to
-const viewEmployees = () => {
 
-}
 
 // THEN I am presented with the job title, role id, the department that role belongs to, and the salary for that role
-const viewRoles = () => {
+
+
+
+
+const addQuery = (input) => {
+    return inquirer.prompt(
+        {
+        type: "list",
+        name: ,
+        message: ""
+        }
+    )
 
 }
 
-// THEN I am presented with a formatted table showing department names and department ids
-const viewDepartments = () => {
-
+//Modular function designed to handle simple view functions.
+const viewQuery = (sql) => {
+    //Gives us a promise
+        db.query(sql, function (err, results) {
+        if (results) {
+            console.table(results);
+        } else if (err) {
+            console.log(err)
+        }
+    })
+    return
 }
 
+//sets our query to the appropriate query, then hands it off to another
+//appropriate function that is handling either views, inserts, updates or deletes.
 
 const queryHandler = (option) => {
-
+    let query;
     console.log(`You choose ${option}`);
-
     // WHEN I choose to view all departments
     if (option == 'View All Departments') {
-        viewDepartments();
-
+        query = 'SELECT * FROM department';
+        viewQuery(query);
     // WHEN I choose to view all roles
     } else if (option =='View All Roles' ) {
-        viewRoles();
-
+        query = 'SELECT * FROM role'
+        viewQuery(query);
     // WHEN I choose to view all employees
     } else if (option == 'View All Employees') {
-        viewEmployees();
-
+        query = 'SELECT * FROM employee'
+        viewQuery(query);
     // WHEN I choose to add a department
     } else if (option == 'Add a Department') {
-        addDepartment();
+        query = ''
+        addQuery();
 
     // WHEN I choose to add a role
     } else if (option == 'Add a Role') {
-        addRole();
-
+        query = ''
+        addQuery();
     }
     // WHEN I choose to add an employee
     else if (option == 'Add An Employee') {
-        addEmployee();
-
+        query = ''
+        addQuery();
     }
     // WHEN I choose to update an employee role
     else if (option == 'Update an Employee') {
-        updateEmployeeRole();
-
-    }else {
-        return console.log("I don't know how you did this, but congratulations.");
+        query = ''
+    } else if (option == 'Exit') {
+        return db.end();
     }
 
 }
