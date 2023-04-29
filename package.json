@@ -1,7 +1,7 @@
 {
   "name": "04-29-2023-employee-database",
   "version": "1.0.0",
-  "description": "## Your Task",
+  "description": "## Employee Database",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/dann-lam/04-29-2023-employee-database#readme",
   "dependencies": {
+    "console.table": "^0.10.0",
+    "express": "^4.18.2",
+    "inquirer": "^8.2.4",
     "mysql2": "^3.2.4"
   }
 }
