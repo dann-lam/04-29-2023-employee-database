@@ -1,11 +1,11 @@
 INSERT INTO department (name)
 VALUES  ("Front"),
-        ("Back"),
+        ("Back");
 
 INSERT INTO role (title, salary, department_id)
 VALUES  ("CEO", 900000, 2),
         ("Manager", 70000, 2),
-        ("Logistics", 60000, 2),
+        ("Logistics", 60000, 1);
 
 
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
