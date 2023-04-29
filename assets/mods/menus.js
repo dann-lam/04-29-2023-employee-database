@@ -2,12 +2,13 @@
 const express = require('express');
 const inquirer = require('inquirer');
 const mysql = require('mysql2');
+const queryHandler = require("./queryhandler")
 
 const app = express();
 
 let questions = [
     {
-        type: 'list',
+        type: "list",
         name: 'mainMenu',
         message: 'Choose an Option',
         choices:
@@ -26,7 +27,7 @@ const CLI = () => {
 
     return inquirer.prompt(questions)
     .then(answers => {
-        console.log(`You choose ${answers.mainMenu}`);
+        queryHandler(answers.mainMenu);
     })
     .catch(error => {
         console.log(error);
