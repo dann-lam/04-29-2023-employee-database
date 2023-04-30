@@ -99,7 +99,6 @@ const addQuery = (sql, type) => {
 
              db.query(sql, [output], function (err, results) {
                 if (results) {
-                    console.table(results)
                     console.log(`Returned: ${sql}`);
                     viewQuery(option)
                 } else if (err) {
@@ -180,7 +179,7 @@ const queryHandler = (option) => {
     }
     // WHEN I choose to add an employee
     else if (option == 'Add An Employee') {
-        query = ''
+        query = 'INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES(?)'
         type = "employee";
 
         addQuery(query, type);
