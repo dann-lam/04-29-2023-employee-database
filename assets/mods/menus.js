@@ -33,7 +33,7 @@ const CLI = () => {
     .then( answers => {
         //queryHandler is being imported, our answer is saved in answers.mainMenu
        assigned = answers.mainMenu;
-       return queryHandler(assigned);
+       queryHandler(assigned);
 
     })
     .catch(error => {
@@ -43,5 +43,5 @@ const CLI = () => {
 
 
 }
-//Export this so we can use it on the
+
 module.exports = { CLI, };

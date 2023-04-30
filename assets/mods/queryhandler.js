@@ -63,58 +63,9 @@ const employeeQuestions = [
         message: "Insert a Manager. (ID)"
     },
 ];
-
-const updateQuery = (sql) => {
-
-}
-
-const addQuery = (sql, type) => {
-        //Determine what questions is being asked based on SQL input.
-        let questions;
-        let option;
-        if(type == "department"){
-            questions = departmentQuestions;
-            option = 'SELECT * FROM department'
-        } else if (type == "role"){
-            questions = roleQuestions;
-            option = 'SELECT * FROM role'
-        } else if (type == "employee"){
-            questions = employeeQuestions;
-            option = 'SELECT * FROM employee'
-        }
-        var output;
-        //Inquirer Prompt for input, feed into our addQuery.
-        //Switch for our question being asked based on type for inquirer question.
-        inquirer.prompt(questions)
-        .then (answers =>
-            {
-
-            //Get the answers object,
-            //Extract the values from the object, assign it to output.
-            output = (Object.values(answers));
-
-                //output is already an array with 3 items in it.
-                //If I don't encase output like [[blah,blah,blah]] IT HATES IT
-                //UGH. WHy??
-
-             db.query(sql, [output], function (err, results) {
-                if (results) {
-                    console.log(`Returned: ${sql}`);
-                    viewQuery(option)
-                } else if (err) {
-                    console.log(sql)
-                    console.log(err)
-                }
-            })
-
-            }
-        )
-        .catch(error => {
-            console.log(error);
-        });
+// UPDATE employee SET role_id = ? WHERE employee.id = ?
 
 
-};
 
 
 
@@ -125,13 +76,101 @@ const viewQuery = (sql) => {
         return db.query(sql, function (err, results) {
         if (results) {
             console.table(results)
-            console.log(`Returned: ${sql}`);
+            return results;
 
         } else if (err) {
             console.log(err)
         }
         db.end();
     })
+
+}
+
+//Modular function designed to handle adding of objects with a prompt.
+const addQuery = (sql, type) => {
+    //Determine what questions is being asked based on SQL input.
+    let questions;
+    let option;
+    if(type == "department"){
+        questions = departmentQuestions;
+        option = 'SELECT * FROM department'
+    } else if (type == "role"){
+        questions = roleQuestions;
+        option = 'SELECT * FROM role'
+    } else if (type == "employee"){
+        questions = employeeQuestions;
+        option = 'SELECT * FROM employee'
+    }
+    var output;
+    //Inquirer Prompt for input, feed into our addQuery.
+    //Switch for our question being asked based on type for inquirer question.
+    inquirer.prompt(questions)
+    .then (answers =>
+        {
+
+        //Get the answers object,
+        //Extract the values from the object, assign it to output.
+        output = (Object.values(answers));
+
+            //output is already an array with 3 items in it.
+            //If I don't encase output like [[blah,blah,blah]] IT HATES IT
+            //UGH. WHy??
+
+         db.query(sql, [output], function (err, results) {
+            if (results) {
+                console.log(`Returned: ${sql}`);
+                viewQuery(option)
+            } else if (err) {
+                console.log(sql)
+                console.log(err)
+            }
+        })
+
+        }
+    )
+    .catch(error => {
+        console.log(error);
+    });
+
+
+};
+
+//Function designed to handle updating.
+const updateQuery = (sql) => {
+
+    let employeeList;
+    let roleList;
+
+    console.log("List of Employees:")
+    viewQuery("SELECT * FROM employee");
+    console.log("List of Roles:")
+    viewQuery("SELECT * FROM role");
+
+    db.query(sql, [1,7], function (err, results) {
+        if (results) {
+            employeeList = results;
+        } else if (err) {
+            console.log(err)
+        }
+    })
+
+
+    console.log("List of Employees:")
+    viewQuery("SELECT * FROM employee");
+    console.log("List of Roles:")
+    viewQuery("SELECT * FROM role");
+
+    //Prompt to choose an ID.
+
+    // inquirer.prompt(
+    //     [
+    //         {
+    //             type: "input",
+    //             name: "value",
+    //             message: 'Choose an ID',
+    //         }
+    //     ]
+    //  )
 
 }
 
@@ -187,8 +226,8 @@ const queryHandler = (option) => {
     }
     // WHEN I choose to update an employee role
     else if (option == 'Update an Employee') {
-        query = ''
-        updateQuery();
+        query = 'UPDATE employee SET role_id = ? WHERE employee.id = ?'
+        updateQuery(query);
         // THEN I am prompted to select an employee to update and their new role and this information is updated in the database
 
     } else if (option == '<-- EXIT & CLOSE CONNECTION -->') {
@@ -197,7 +236,7 @@ const queryHandler = (option) => {
     }
     //Once we're done with our table stuff, we leave.
     //TODO: This *SHOULD* start another menu prompt, but that's not playing nice.
-
+    return;
 }
 
 module.exports = { queryHandler,};
