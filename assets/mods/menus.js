@@ -27,16 +27,20 @@ const { queryHandler } = require("./queryhandler")
 // GIVEN a command-line application that accepts user input
 const CLI = () => {
     // THEN I am presented with the following options: view all departments, view all roles, view all employees, add a department, add a role, add an employee, and update an employee role
-
+    let assigned;
     inquirer.prompt(questions)
     .then( answers => {
         //queryHandler is being imported, our answer is saved in answers.mainMenu
-        queryHandler(answers.mainMenu);
-      return;
+       assigned = answers.mainMenu;
+       queryHandler(assigned);
+
     })
     .catch(error => {
         console.log(error);
     })
+
+
+
 }
 //Export this so we can use it on the
 module.exports = { CLI, };
