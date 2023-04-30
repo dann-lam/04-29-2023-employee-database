@@ -1,4 +1,5 @@
 const mysql = require('mysql2');
+
 const inquirer = require('inquirer');
 
 const db = mysql.createConnection(
@@ -8,8 +9,41 @@ const db = mysql.createConnection(
       password: 'password',
       database: 'employee_db'
     },
-    console.log(`Connected to the movie_db database.`)
+    console.log(`Connected to the employee_db database.`)
 );
+
+// const questions = [
+//     {
+//         type: "list",
+//         name: 'mainMenu',
+//         message: 'Choose an Option',
+//         choices:
+//             [
+//                 'View All Departments',
+//                 'View All Roles',
+//                 'View All Employees',
+//                 'Add a Department',
+//                 'Add a Role',
+//                 'Add An Employee',
+//                 'Update an Employee',
+//                 'Exit'
+//             ]
+//     },
+// ];
+
+// const prompter = () => {
+//     return inquirer.prompt(questions)
+//     .then(answers => {
+//         //queryHandler is being imported, our answer is saved in answers.mainMenu
+//         return queryHandler(answers.mainMenu);
+//     })
+//     // .then(() => {
+//     //     return CLI();
+//     // })
+//     .catch(error => {
+//         console.log(error);
+//     })
+// }
 
 // THEN I am prompted to select an employee to update and their new role and this information is updated in the database
 const updateEmployeeRole = () => {
@@ -39,16 +73,16 @@ const addDepartment = () => {
 
 
 
-const addQuery = (input) => {
-    return inquirer.prompt(
-        {
-        type: "list",
-        name: ,
-        message: ""
-        }
-    )
+// const addQuery = (input) => {
+//     return inquirer.prompt(
+//         {
+//         type: "input",
+//         name: ,
+//         message: ""
+//         }
+//     )
 
-}
+// }
 
 //Modular function designed to handle simple view functions.
 const viewQuery = (sql) => {
@@ -60,7 +94,7 @@ const viewQuery = (sql) => {
             console.log(err)
         }
     })
-    return
+    return;
 }
 
 //sets our query to the appropriate query, then hands it off to another
@@ -73,6 +107,7 @@ const queryHandler = (option) => {
     if (option == 'View All Departments') {
         query = 'SELECT * FROM department';
         viewQuery(query);
+
     // WHEN I choose to view all roles
     } else if (option =='View All Roles' ) {
         query = 'SELECT * FROM role'
