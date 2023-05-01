@@ -134,6 +134,8 @@ const addQuery = (sql, type) => {
 };
 
 //Function designed to handle updating.
+//It is not modular, but can be setup to be.
+
 const updateQuery = (sql) => {
 
     let employeeList;
@@ -248,7 +250,8 @@ const queryHandler = (option) => {
 
 
     } else if (option == 'View All Employees') {
-        query = "SELECT employee.first_name, employee.last_name, role.title ,role.salary,  manager.first_name AS manager_first_name FROM employee JOIN role ON role.id = employee.role_id LEFT JOIN employee manager ON employee.manager_id = manager.id"
+        //These are UTTERLY illegible. I'm sorry.
+        query = "SELECT employee.first_name, employee.last_name, role.title ,role.salary, department.name as department_name,  manager.first_name AS manager_first_name FROM employee JOIN role ON role.id = employee.role_id LEFT JOIN employee manager ON employee.manager_id = manager.id LEFT JOIN department ON role.department_id = department.id"
         viewQuery(query);
 
 

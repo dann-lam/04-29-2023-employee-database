@@ -1,17 +1,18 @@
 INSERT INTO department (name)
-VALUES  ("Front"),
-        ("Back");
+VALUES  ("Water"),
+        ("Gas"),
+        ("Electricity");
 
 INSERT INTO role (title, salary, department_id)
-VALUES  ("CEO", 900000, 2),
+VALUES  ("CEO", 900000, 3),
         ("Manager", 70000, 2),
         ("Logistics", 60000, 1);
 
 
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
-VALUES  ("Master", "Chief", 1, null),
-        ("John", "John", 2, 1),
-        ("Kevin", "Kevin", 2, 1),
-        ("Kanye", "West", 3, 2),
+VALUES  ("Sharon", "Schwartz", 1, null),
+        ("Gill", "Bates", 2, 1),
+        ("Sevin", "Cpacey", 2, 1),
+        ("Wanye", "Kest", 3, 2),
         ("Roe", "Jogan", 3, 3),
         ("Fex", "Liedman", 3, 2);
