@@ -1,6 +1,66 @@
-# 12 SQL: Employee Tracker
+# SQL Employee COntent Management Database
 
-## Your Task
+## Technology Used
+
+| Technology Used         | Resource URL           |
+| ------------- |:-------------:|
+| Git | [https://git-scm.com/](https://git-scm.com/)     |
+| JS  | [https://www.javascript.com/](https://www.javascript.com/)     |
+| Node  | [https://nodejs.org/en](https://nodejs.org/en)     |
+| MySQL  | [https://www.mysql.com/](https://www.mysql.com/)     |
+| Inquirer  | [https://www.npmjs.com/package/inquirer](https://www.npmjs.com/package/inquirer)     |
+
+
+## Description
+
+[Visit the Deployed Site](https://dann-lam.github.io/04-29-2023-employee-database/)
+
+This is a CLI app that allows users to read and write departments, roles, and employee information to a SQL database.
+
+Users can add additional departments, roles, and employees, as well as update existing employees.
+
+It's still quite early and not 100% fully fleshed out, later features will be more complete allowing users to delete users or departments or anything else.
+
+
+## Table of Contents
+
+
+* [Usage](#usage)
+* [Learning Points](#learning-points)
+* [Credits](#credits)
+* [License](#license)
+
+
+## Usage
+
+To use this project, install node into the server.
+
+After installing, run node server.js, go to the local host opened port, enter the site, and start making ntoes!
+
+
+![Image of Application](https://github.com/dann-lam/04-26-2023-note-taker/blob/main/note_taker.gif)
+
+
+
+## Learning Points
+
+This project was a fantastic exercise of express, it was actually pretty difficult for me as some of the concepts were not quite solid, and there was quite a bit of struggle trying to understand why some of my promises were not returning! At the end of the day, we figured out what was occurring and all was well.
+
+## Credits
+
+Thanks, Bed.
+
+
+## License
+
+MIT License
+
+
+
+
+# 12 Employee Tracker App
+
+## The Ask
 
 Developers frequently have to create interfaces that allow non-developers to easily view and interact with information stored in databases. These interfaces are called **content management systems (CMS)**. Your assignment this week is to build a command-line application from scratch to manage a company's employee database, using Node.js, Inquirer, and MySQL.
 
