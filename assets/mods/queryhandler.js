@@ -10,6 +10,8 @@ const db = mysql.createConnection(
       database: 'employee_db'
     },
     console.log(`Connected to the employee_db database.`)
+    //Yeah, yeah, I know. the password is shown. not good.
+    //it's temporary, mmmkaaay??
 );
 //Question set for specific inquirer prompts.
 //Move these into their own file in future.
@@ -240,13 +242,13 @@ const queryHandler = (option) => {
 
     // WHEN I choose to view all roles
     } else if (option =='View All Roles' ) {
-        query = 'SELECT * FROM role'
+        query = 'SELECT * FROM role LEFT JOIN department on department_id = department.id'
         viewQuery(query);
 
 
 
     } else if (option == 'View All Employees') {
-        query = 'SELECT * FROM employee'
+        query = "SELECT employee.first_name, employee.last_name, role.title ,role.salary,  manager.first_name AS manager_first_name FROM employee JOIN role ON role.id = employee.role_id LEFT JOIN employee manager ON employee.manager_id = manager.id"
         viewQuery(query);
 
 
@@ -269,18 +271,18 @@ const queryHandler = (option) => {
         type = "employee";
 
         addQuery(query, type);
-        // THEN I am prompted to enter the employee’s first name, last name, role, and manager, and that employee is added to the database
     }
-    // WHEN I choose to update an employee role
+
     else if (option == 'Update an Employee') {
         query = 'UPDATE employee SET role_id = ? WHERE employee.id = ?'
         updateQuery(query);
-        // THEN I am prompted to select an employee to update and their new role and this information is updated in the database
+
 
     } else if (option == '<-- EXIT & CLOSE CONNECTION -->') {
         db.end()
         return db.close();
     }
+
     //Once we're done with our table stuff, we leave.
     //TODO: This *SHOULD* start another menu prompt, but that's not playing nice.
     return;
