@@ -141,36 +141,100 @@ const updateQuery = (sql) => {
     let employeeList;
     let roleList;
 
-    console.log("List of Employees:")
-    viewQuery("SELECT * FROM employee");
-    console.log("List of Roles:")
-    viewQuery("SELECT * FROM role");
+    //We need to do two questions inside of an inquirer prompt.
+    //Before we do that, I want to be able to grab the list of Employees
+    //and the list of roles
+    //and have them as choices.
 
-    db.query(sql, [1,7], function (err, results) {
+        db.query("SELECT * FROM employee", function (err, results) {
         if (results) {
-            employeeList = results;
+            //Store our results from query to employeeList
+           employeeList = results;
+           //Store our results from query to roleList.
+           db.query("SELECT * FROM role", function (err, results) {
+            if (results) {
+               roleList = results;
+               //Begin prompting.
+
+               //Initialize empty arrays for our inquirer prompt questions.
+               let employeeListArr = [];
+               let roleListArr = [];
+
+
+                //Goes through the employee list, grabs details, pushes it into an array as a string.
+
+               for(let i = 0; i < employeeList.length; i++){
+
+                let employeeListStr=(`ID - ${employeeList[i].id} - ${ employeeList[i].first_name} - ${employeeList[i].last_name }`)
+
+                employeeListArr.push(employeeListStr)
+               }
+               //Goes through the RoleList object, grabs the details, pushes it into an array as a string.
+               for(let i = 0; i < roleList.length; i++){
+
+                let roleListStr=(`ID - ${roleList[i].id} - ${ roleList[i].title} - ${roleList[i].salary }`)
+
+                roleListArr.push(roleListStr)
+               }
+
+
+               inquirer.prompt(
+                [
+                    {
+                        type: "list",
+                        name: "chooseEmployee",
+                        message: 'Choose your Employee',
+                        choices: employeeListArr
+                    },
+                    {
+                        type: "list",
+                        name: "chooseRole",
+                        message: 'Choose your Role to Change',
+                        choices: roleListArr
+                    },
+                ]
+             )
+             .then (answer => {
+
+                //Get the ID from our Strings
+                //(E.G. "ID - 3 - Moe - Wogan") simply becomes "3".)
+                let empID = answer.chooseEmployee.split(" - ")[1];
+                let roleID = answer.chooseRole.split(" - ")[1];
+
+                //DB QUERY to change our Employee based on ID to role based on ID.
+
+                db.query(sql, [empID,roleID], function (err, results) {
+                    if (results) {
+                        console.table(results);
+                        console.log("Results updated!!");
+                    } else if (err) {
+                        console.log(err)
+                    }
+                })
+             })
+
+            } else if (err) {
+                console.log(err)
+            }
+        })
+
         } else if (err) {
             console.log(err)
         }
     })
 
+    //Function role Change
 
-    console.log("List of Employees:")
-    viewQuery("SELECT * FROM employee");
-    console.log("List of Roles:")
-    viewQuery("SELECT * FROM role");
+
+
+    // console.log("List of Employees:")
+    // viewQuery("SELECT * FROM employee");
+    // console.log("List of Roles:")
+    // viewQuery("SELECT * FROM role");
 
     //Prompt to choose an ID.
 
-    // inquirer.prompt(
-    //     [
-    //         {
-    //             type: "input",
-    //             name: "value",
-    //             message: 'Choose an ID',
-    //         }
-    //     ]
-    //  )
+
 
 }
 
