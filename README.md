@@ -37,7 +37,7 @@ To use this, start by cloning it and installing node.
 
 Once complete, run node server.js
 
-Here is a quick demo of the application, a longer version can be found in assets/full_usage.mp4.
+Here is a quick demo of the application, a longer version can be found here: https://raw.githubusercontent.com/dann-lam/04-29-2023-employee-database/main/assets/full_usage.mp4
 
 ![Image of Application](https://github.com/dann-lam/04-29-2023-employee-database/blob/main/assets/preview_usage.gif)
 
