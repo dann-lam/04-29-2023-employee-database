@@ -39,7 +39,7 @@ Once complete, run node server.js
 
 Here is a quick demo of the application, a longer version can be found in assets/full_usage.mp4.
 
-![Image of Application](https://dann-lam.github.io/04-29-2023-employee-database/blob/main/assets/preview_usage.gif)
+![Image of Application](https://github.com/dann-lam/04-29-2023-employee-database/blob/main/assets/preview_usage.gif)
 
 
 
