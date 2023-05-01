@@ -1,4 +1,4 @@
-# SQL Employee COntent Management Database
+# SQL Employee Content Management Database
 
 ## Technology Used
 
