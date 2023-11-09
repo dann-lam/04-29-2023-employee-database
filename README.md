@@ -35,11 +35,19 @@ It's still quite early and not 100% fully fleshed out, later features will be mo
 
 To use this, start by cloning it and installing node.
 
+After installing node, you'll have to run the Mysql schemas located in assets/db
 Once complete, run node server.js
+
+https://github.com/dann-lam/04-29-2023-employee-database/assets/15963035/bff200eb-9c89-4f3c-9360-806e87784901
+
+
 
 Here is a quick demo of the application, a longer version can be found here: https://raw.githubusercontent.com/dann-lam/04-29-2023-employee-database/main/assets/full_usage.mp4
 
-![Image of Application](https://github.com/dann-lam/04-29-2023-employee-database/blob/main/assets/preview_usage.gif)
+
+https://github.com/dann-lam/04-29-2023-employee-database/assets/15963035/15e09239-f1f2-4109-a2ad-cc41b67c479a
+
+
 
 
 
