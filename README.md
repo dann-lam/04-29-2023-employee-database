@@ -42,7 +42,7 @@ https://github.com/dann-lam/04-29-2023-employee-database/assets/15963035/bff200e
 
 
 
-Here is a quick demo of the application, a longer version can be found here: https://raw.githubusercontent.com/dann-lam/04-29-2023-employee-database/main/assets/full_usage.mp4
+Here is a quick demo of the application, a longer version can be found here
 
 
 https://github.com/dann-lam/04-29-2023-employee-database/assets/15963035/15e09239-f1f2-4109-a2ad-cc41b67c479a
